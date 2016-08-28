@@ -1,0 +1,45 @@
+buildscript {
+	ext {
+		springBootVersion = '1.4.0.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'spring-boot'
+apply plugin: 'eclipse'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+version = '1.0'
+
+jar {
+    baseName = 'batchDemo'
+    version = '1.0'
+}
+
+repositories {
+    mavenCentral()
+	mavenLocal()
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-batch")
+    compile("org.springframework.boot:spring-boot-starter-integration")
+    compile("org.springframework.integration:spring-integration-ftp")
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile('org.springframework.boot:spring-boot-starter-redis')
+	compile('org.springframework.boot:spring-boot-starter-data-mongodb')
+	compile("com.oracle:ojdbc5:11.1.0")
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('org.springframework.batch:spring-batch-integration')
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.7'
+}
